@@ -12,11 +12,13 @@ class Queue(AbstractQueue):
         self.files.append(value)
 
     def dequeue(self):
-        if len(self.files) == 0:
+        if len(self.files) > 0:
+            return self.files.pop(0)
+        else:
             raise IndexError("Índice Inválido ou Inexistente")
-        return self.files.pop(0)
 
     def search(self, index):
-        if index < 0 or index >= len(self.files):
+        if 0 <= index <= (len(self.files) - 1):
+            return self.files[index]
+        else:
             raise IndexError("Índice Inválido ou Inexistente")
-        return self.files[index]
